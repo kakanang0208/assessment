@@ -2,7 +2,7 @@ package com.kbtg.bootcamp.posttest.user;
 
 import com.kbtg.bootcamp.posttest.lottery.Lottery;
 import com.kbtg.bootcamp.posttest.lottery.LotteryRepository;
-import exception.NotFoundException;
+import com.kbtg.bootcamp.posttest.exception.NotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
