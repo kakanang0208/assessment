@@ -2,6 +2,8 @@ package com.kbtg.bootcamp.posttest.user;
 
 import com.kbtg.bootcamp.posttest.lottery.Lottery;
 import com.kbtg.bootcamp.posttest.lottery.LotteryRepository;
+import exception.NotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    @Transactional
     public UserTicket buyLotteryById(String id, String ticketId) {
         UserTicket userTicket = null;
         Optional<UserTicket> existUserTicket = userRepository.findById(id);
@@ -36,7 +39,7 @@ public class UserService {
             lotteryRepository.save(lottery.get());
 
         } else{
-//            throw new NotFoundException("Ticket not found "+ticketId);
+            throw new NotFoundException("Ticket not found "+ticketId);
         }
         return existUserTicket.orElse(userTicket);
     }
@@ -64,7 +67,7 @@ public class UserService {
             lottery.get().setUserTicket(null);
             lotteryRepository.save(lottery.get());
         } else{
-
+            throw new NotFoundException("Data not found");
         }
         return lottery.get().getTicket();
     }
