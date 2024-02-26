@@ -1,4 +1,4 @@
-package exception;
+package com.kbtg.bootcamp.posttest.exception;
 
 public class DuplicateException extends RuntimeException{
     public DuplicateException(String message) {
