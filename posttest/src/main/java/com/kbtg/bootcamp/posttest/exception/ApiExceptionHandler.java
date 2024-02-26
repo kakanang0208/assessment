@@ -1,4 +1,4 @@
-package com.exercise.wallets.exception;
+package exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
