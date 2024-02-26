@@ -1,8 +1,10 @@
 package com.kbtg.bootcamp.posttest.lottery;
 
+import com.kbtg.bootcamp.posttest.exception.DuplicateException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LotteryService {
@@ -14,6 +16,11 @@ public class LotteryService {
     }
 
     public Lottery addLottery(LotteryRequest lotteryRequest) {
+        Optional<Lottery> exitLottery = repository.findByTicket(lotteryRequest.getTicket());
+        if(exitLottery.isPresent()){
+            throw new DuplicateException("Ticket already exist");
+        }
+
         Lottery lottery = new Lottery();
         lottery.setAmount(lotteryRequest.getAmount());
         lottery.setPrice(lotteryRequest.getPrice());
